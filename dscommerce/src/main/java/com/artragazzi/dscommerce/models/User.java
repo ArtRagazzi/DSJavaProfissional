@@ -9,8 +9,7 @@ import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
-@Setter
+
 
 
 @Entity
@@ -18,11 +17,21 @@ import java.util.List;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Getter @Setter
     private Long id;
+    @Getter @Setter
     private String name;
+    @Getter @Setter
     private String email;
+    @Getter @Setter
     private String phone;
+    @Getter @Setter
     private LocalDate birthDay;
+    @Getter @Setter
     private String password;
 
+    //Qual o nome do Atributo la na cLasse Order
+    @Getter
+    @OneToMany(mappedBy = "client")
+    private List<Order> orders = new ArrayList<>();
 }
