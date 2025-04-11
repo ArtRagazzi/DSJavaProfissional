@@ -1,13 +1,18 @@
 package com.artragazzi.dscommerce.models;
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+
+
 @Entity
 @Table(name = "tb_user")
 public class User {
@@ -15,16 +20,9 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-
-    @Column(unique = true)
     private String email;
-
     private String phone;
     private LocalDate birthDay;
     private String password;
-
-    @OneToMany(mappedBy = "client")
-    private List<Order> orders = new ArrayList<>();
-
 
 }
