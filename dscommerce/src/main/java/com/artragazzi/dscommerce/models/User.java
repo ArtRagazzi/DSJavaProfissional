@@ -27,7 +27,7 @@ public class User {
     @Getter @Setter
     private String phone;
     @Getter @Setter
-    private LocalDate birthDay;
+    private LocalDate birthDate;
     @Getter @Setter
     private String password;
 
