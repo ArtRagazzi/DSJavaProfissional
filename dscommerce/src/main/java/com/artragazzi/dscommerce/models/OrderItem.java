@@ -5,19 +5,17 @@ import jakarta.persistence.Embeddable;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 
 @NoArgsConstructor
-
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
 @Table(name = "tb_order_item")
 public class OrderItem {
 
     @EmbeddedId
+    @EqualsAndHashCode.Include
     private OrderItemPK id = new OrderItemPK();
 
     @Getter @Setter

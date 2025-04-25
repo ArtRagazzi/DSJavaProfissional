@@ -10,14 +10,14 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 
-
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 
 @Entity
 @Table(name = "tb_user")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Getter @Setter
+    @Getter @Setter @EqualsAndHashCode.Include
     private Long id;
     @Getter @Setter
     private String name;
