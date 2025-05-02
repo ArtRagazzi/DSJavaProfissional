@@ -1,11 +1,11 @@
 package com.artragazzi.dscommerce.controllers;
 
 
+import com.artragazzi.dscommerce.dto.ProductDTO;
 import com.artragazzi.dscommerce.models.Product;
 import com.artragazzi.dscommerce.repositories.ProductRepository;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.artragazzi.dscommerce.services.ProductService;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
@@ -13,17 +13,16 @@ import java.util.Optional;
 @RequestMapping("/products")
 public class ProductController {
 
-    private final ProductRepository productRepository;
+    private final ProductService productService;
 
-    public ProductController(ProductRepository productRepository){
-        this.productRepository = productRepository;
+    public ProductController(ProductService productService){
+        this.productService = productService;
     }
 
-    @GetMapping
-    public Product getProduct(){
-        Optional<Product> product = productRepository.findById(1L);
-        Product myProd = product.get();
-        return myProd;
+    @GetMapping(value = "/{id}")
+    public ProductDTO findById(@PathVariable Long id){
+        ProductDTO dto = productService.findById(id);
+        return dto;
     }
 
 }
