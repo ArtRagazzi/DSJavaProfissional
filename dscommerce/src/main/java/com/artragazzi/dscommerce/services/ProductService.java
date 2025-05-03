@@ -26,9 +26,33 @@ public class ProductService {
         Product product = productRepository.findById(id).get();
         return ProductDTO.toDTO(product);
     }
+
     @Transactional(readOnly = true)
     public Page<ProductDTO> findAll(Pageable pageable){
         Page<Product> products = productRepository.findAll(pageable);
         return products.map(ProductDTO::toDTO);
+    }
+
+    @Transactional()
+    public ProductDTO insert(ProductDTO productDTO){
+        Product entity = ProductDTO.toEntity(productDTO);
+        entity = productRepository.save(entity);
+        return ProductDTO.toDTO(entity);
+    }
+
+    @Transactional()
+    public ProductDTO update(Long id, ProductDTO productDTO){
+        Product entity = productRepository.getReferenceById(id);
+        copyDtoToEntity(productDTO,entity);
+        entity = productRepository.save(entity);
+        return ProductDTO.toDTO(entity);
+    }
+
+
+    private void copyDtoToEntity(ProductDTO dto, Product product){
+        product.setName(dto.name());
+        product.setDescription(dto.description());
+        product.setPrice(dto.price());
+        product.setImgUrl(dto.imgUrl());
     }
 }

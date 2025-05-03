@@ -14,4 +14,13 @@ public record ProductDTO(Long id, String name, String description, Double price,
         );
     }
 
+    public static Product toEntity(ProductDTO productDTO){
+        Product product = new Product();
+        product.setName(productDTO.name());
+        product.setDescription(productDTO.description());
+        product.setPrice(productDTO.price());
+        product.setImgUrl(productDTO.imgUrl());
+        return product;
+    }
+
 }
