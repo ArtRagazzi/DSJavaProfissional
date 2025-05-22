@@ -31,11 +31,17 @@ public class ProductController {
         ProductDTO dto = productService.findById(id);
         return ResponseEntity.ok(dto);
     }
+//    @GetMapping()
+//    public ResponseEntity<Page<ProductDTO>> findAll(Pageable pageable){
+//        Page productsDto = productService.findAll(pageable);
+//        return ResponseEntity.ok(productsDto);
+//    } Utiliza o mesmo path do findbyName
     @GetMapping()
-    public ResponseEntity<Page<ProductDTO>> findAll(Pageable pageable){
-        Page productsDto = productService.findAll(pageable);
+    public ResponseEntity<Page<ProductDTO>> findByName(@RequestParam(name = "name", defaultValue = "") String name, Pageable pageable){
+        Page productsDto = productService.findByName(name, pageable);
         return ResponseEntity.ok(productsDto);
     }
+
     @PostMapping()
     public ResponseEntity<ProductDTO> insert(@Valid @RequestBody ProductDTO productDTO){
         productDTO = productService.insert(productDTO);

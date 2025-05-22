@@ -39,6 +39,12 @@ public class ProductService {
         return products.map(ProductDTO::toDTO);
     }
 
+    @Transactional(readOnly = true)
+    public Page<ProductDTO> findByName(String name, Pageable pageable){
+        Page<Product> result = productRepository.searchByName(name, pageable);
+        return result.map(ProductDTO::toDTO);
+    }
+
     @Transactional()
     public ProductDTO insert(ProductDTO productDTO){
         Product entity = ProductDTO.toEntity(productDTO);
