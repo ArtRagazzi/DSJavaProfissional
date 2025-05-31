@@ -25,4 +25,5 @@ public class DemoApplication implements CommandLineRunner {
 		boolean result = passwordEncoder.matches("123456", "$2a$10$ii7I37xvCjst4P0G6PxhX.Jcrl10YI1.GFKWbw7EuF2nd/orC1IGK");
 		System.out.println(result);
 	}
+
 }
